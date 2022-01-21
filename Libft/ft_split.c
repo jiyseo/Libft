@@ -6,7 +6,7 @@
 /*   By: jiyseo <jiyseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 02:34:25 by jiyseo            #+#    #+#             */
-/*   Updated: 2022/01/22 03:07:28 by jiyseo           ###   ########.fr       */
+/*   Updated: 2022/01/22 03:12:31 by jiyseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ char	**ft_free(char	**res)
 	return (NULL);
 }
 
-long long	ft_word_cnt(char const *str, char c)
+unsigned int	ft_word_cnt(char const *str, char c)
 {
-	long long	cnt;
+	unsigned int	cnt;
 
 	cnt = 0;
 	while (*str)
@@ -59,9 +59,9 @@ char	**ft_split_alloc(char const	*str, char	c)
 
 char	**ft_split(char const *str, char c)
 {
-	     char	**res;
-	long long	i;
-	     char	*from;
+	        char	**res;
+	unsigned int	i;
+	        char	*from;
 
 	res = ft_split_alloc(str, c);
 	if (!res)
@@ -79,6 +79,6 @@ char	**ft_split(char const *str, char c)
 			return (ft_free(res));
 		ft_strcpy(res[i++], from, str);
 	}
-	res[i] = '\0';
+	res[i] = NULL;
 	return (res);
 }
