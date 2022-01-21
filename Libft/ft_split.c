@@ -6,7 +6,7 @@
 /*   By: jiyseo <jiyseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 02:34:25 by jiyseo            #+#    #+#             */
-/*   Updated: 2022/01/22 03:12:31 by jiyseo           ###   ########.fr       */
+/*   Updated: 2022/01/22 03:17:25 by jiyseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ unsigned int	ft_word_cnt(char const *str, char c)
 		++cnt;
 		while (*str && *str != c)
 			++str;
-		++str;
 	}
 	return (cnt);
 }
