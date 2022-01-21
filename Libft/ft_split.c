@@ -6,7 +6,7 @@
 /*   By: jiyseo <jiyseo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 02:34:25 by jiyseo            #+#    #+#             */
-/*   Updated: 2022/01/19 20:41:04 by jiyseo           ###   ########.fr       */
+/*   Updated: 2022/01/22 03:07:28 by jiyseo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,11 @@ long long	ft_word_cnt(char const *str, char c)
 	cnt = 0;
 	while (*str)
 	{
-		if (*str != c)
-		{
-			++cnt;
-			while (*str && *str != c)
-				++str;
+		if (*str++ != c)
 			continue ;
-		}
+		++cnt;
+		while (*str && *str != c)
+			++str;
 		++str;
 	}
 	return (cnt);
@@ -49,7 +47,7 @@ void	ft_strcpy(char *dst, char *from, char const *until)
 {
 	while (from < until)
 		*(dst++) = *(from++);
-	*dst = 0;
+	*dst = '\0';
 }
 
 char	**ft_split_alloc(char const	*str, char	c)
@@ -71,19 +69,16 @@ char	**ft_split(char const *str, char c)
 	i = 0;
 	while (*str)
 	{
-		if (*str != c)
-		{
-			from = (char *)str;
-			while (*str && *str != c)
-				++str;
-			res[i] = (char *)malloc(sizeof(char) * (str - from + 1));
-			if (!(res[i]))
-				return (ft_free(res));
-			ft_strcpy(res[i++], from, str);
+		if (*str++ == c)
 			continue ;
-		}
-		++str;
+		from = (char *)str - 1;
+		while (*str && *str != c)
+			str++;
+		res[i] = (char *)malloc(sizeof(char) * (str - from + 1));
+		if (!(res[i]))
+			return (ft_free(res));
+		ft_strcpy(res[i++], from, str);
 	}
-	res[i] = 0;
+	res[i] = '\0';
 	return (res);
 }
